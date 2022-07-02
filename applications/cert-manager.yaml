@@ -18,6 +18,8 @@ spec:
           value: "false"
         - name: serviceAccount.name
           value: "cert-manager"
+        - name: extraArgs[0]
+          value: --issuer-ambient-credentials=true
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
