@@ -15,11 +15,11 @@ spec:
         - name: installCRDs
           value: "true"
         - name: serviceAccount.create
-          value: "false"
+          value: "false" # Needed for setting up Workload Identity on customer cert-manager Service Account
         - name: serviceAccount.name
-          value: "cert-manager"
+          value: "cert-manager" # Needed for setting up Workload Identity on custom cert-manager Service Account
         - name: extraArgs[0]
-          value: --issuer-ambient-credentials=true
+          value: --issuer-ambient-credentials=true # Needed for Workload Identity for Cloud DNS solving
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
