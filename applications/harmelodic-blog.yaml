@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harmelodic-blog
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Harmelodic/blog.git
+    targetRevision: HEAD
+    path: kustomize/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: harmelodic
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
