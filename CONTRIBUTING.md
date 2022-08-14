@@ -1,0 +1,36 @@
+# Contributing
+
+This repository contains 3 directories which need to be deployed in the following sequence:
+
+1. `base`
+2. `boostrap`
+3. `applications`
+
+## `base`
+
+`base` contains initial infrastructure and Kubernetes resources for applications to work.
+
+This covers things like:
+
+- Namespaces
+- Workloads / Workload Identity / IAM Permissions
+- Databases
+- GitOps deployment tool - used for a later deployment stage.
+
+## `bootstrap`
+
+`bootstrap` contains the initial Kubernetes manifest needed by the GitOps deployment tool to know where to look for
+Kubernetes resources and begin deploying them automatically.
+
+Right now, I use Argo CD as the GitOps deployment tool, and I use the "App of Apps" pattern - therefore bootstrap simply
+contains an Argo CD `Application` resource, pointing to the `applications` directory of this repo.  
+This needs to be separate from `base` because Terraform does not now how to deploy an Argo CD `Application` without Argo
+CD and its CRDs already being installed, which occurs as part of the `base`.
+
+## `applications`
+
+`applications` contains the base Application resources needed by the GitOps deployment tool to know where to look for
+and how to deploy actual applications.
+
+Right now, I use Argo CD as the GitOps deployment tool - therefore each Application is an Argo CD `Application` resource
+which points to the Application repository, where deployment configuration is kept.

@@ -19,8 +19,9 @@ jobs:
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/automation/providers/github
           service_account: automation@automation-220928.iam.gserviceaccount.com
-      - run: terraform -chdir=infrastructure init -upgrade
-      - run: terraform -chdir=infrastructure validate
+
+      - run: terraform -chdir=base init -upgrade
+      - run: terraform -chdir=base validate
+
       - run: terraform -chdir=bootstrap init -upgrade
       - run: terraform -chdir=bootstrap validate
-
