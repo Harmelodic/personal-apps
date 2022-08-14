@@ -23,3 +23,7 @@ jobs:
       - run: terraform -chdir=infrastructure validate
       - run: terraform -chdir=infrastructure workspace new prod || terraform -chdir=infrastructure workspace select prod
       - run: terraform -chdir=infrastructure apply -var-file="prod.tfvars" -auto-approve
+      - run: terraform -chdir=bootstrap init -upgrade
+      - run: terraform -chdir=bootstrap validate
+      - run: terraform -chdir=bootstrap workspace new prod || terraform -chdir=bootstrap workspace select prod
+      - run: terraform -chdir=bootstrap apply -var-file="prod.tfvars" -auto-approve

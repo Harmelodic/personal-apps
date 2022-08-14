@@ -20,11 +20,3 @@ resource "helm_release" "argo_cd" {
     value = "10"
   }
 }
-
-resource "kubernetes_manifest" "apps_gitops_argo_app" {
-  depends_on = [
-    helm_release.argo_cd
-  ]
-
-  manifest = yamldecode(file("./apps-argo-cd-gitops-app.yaml"))
-}
