@@ -22,10 +22,10 @@ jobs:
 
       - run: terraform -chdir=base init -upgrade
       - run: terraform -chdir=base validate
-      - run: terraform -chdir=base workspace new prod || terraform -chdir=base workspace select prod
+      - run: terraform -chdir=base workspace select prod || terraform -chdir=base workspace new prod
       - run: terraform -chdir=base apply -var-file="prod.tfvars" -auto-approve
 
       - run: terraform -chdir=bootstrap init -upgrade
       - run: terraform -chdir=bootstrap validate
-      - run: terraform -chdir=bootstrap workspace new prod || terraform -chdir=bootstrap workspace select prod
+      - run: terraform -chdir=bootstrap workspace select prod || terraform -chdir=bootstrap workspace new prod
       - run: terraform -chdir=bootstrap apply -var-file="prod.tfvars" -auto-approve
