@@ -13,7 +13,7 @@ resource "helm_release" "argo_cd" {
   name       = "argo-cd"
   namespace  = kubernetes_namespace.argo_cd.metadata.0.name
   repository = "https://argoproj.github.io/argo-helm"
-  version    = "5.5.24"
+  version    = "5.5.25"
 
   set {
     name  = "args.appResyncPeriod" # resync all apps very X seconds
