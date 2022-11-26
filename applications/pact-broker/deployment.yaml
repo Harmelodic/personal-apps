@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pact-broker
+  name: broker
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app.kubernetes.io/name: pact-broker
+      app.kubernetes.io/name: broker
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: pact-broker
+        app.kubernetes.io/name: broker
     spec:
-      serviceAccountName: pact-broker
+      serviceAccountName: broker
       containers:
-        - name: pact-broker
+        - name: broker
           image: pactfoundation/pact-broker:2.105.0.1
           imagePullPolicy: Always
           ports:
@@ -30,7 +30,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: username
-                  name: pact-broker-database-connection # Created by Database IaC
+                  name: broker-database-connection # Created by Database IaC
             - name: PACT_BROKER_DATABASE_PASSWORD
               value: ""
             - name: PACT_BROKER_DATABASE_HOST
@@ -39,7 +39,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: database
-                  name: pact-broker-database-connection # Created by Database IaC
+                  name: broker-database-connection # Created by Database IaC
             - name: PACT_BROKER_DATABASE_PORT
               value: "5432"
             - name: PACT_BROKER_ALLOW_PUBLIC_READ
@@ -48,12 +48,12 @@ spec:
 #              valueFrom:
 #                secretKeyRef:
 #                  key: username
-#                  name: pact-broker-auth
+#                  name: broker-auth
 #            - name: PACT_BROKER_BASIC_AUTH_PASSWORD
 #              valueFrom:
 #                secretKeyRef:
 #                  key: password
-#                  name: pact-broker-auth
+#                  name: broker-auth
             - name: PACT_BROKER_PUBLIC_HEARTBEAT
               value: "true"
             - name: PACT_BROKER_LOG_LEVEL
@@ -97,7 +97,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: instance-connection-name
-                  name: pact-broker-database-connection # Created by Database IaC
+                  name: broker-database-connection # Created by Database IaC
           securityContext:
             runAsNonRoot: true
           resources:

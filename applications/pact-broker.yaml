@@ -11,7 +11,7 @@ spec:
     path: applications/pact-broker
   destination:
     server: https://kubernetes.default.svc
-    namespace: pact-broker
+    namespace: pact
   syncPolicy:
     automated:
       selfHeal: true
