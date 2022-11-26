@@ -7,11 +7,11 @@ spec:
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app.kubernetes.io/name: broker
+      app: broker
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: broker
+        app: broker
     spec:
       serviceAccountName: broker
       containers:
