@@ -1,12 +1,12 @@
-resource "kubernetes_namespace" "pact_broker" {
+resource "kubernetes_namespace" "pact" {
   metadata {
-    name = "pact-broker"
+    name = "pact"
   }
 }
 
 module "pact_broker_workload" {
   source     = "./workload"
-  name       = "pact-broker"
-  namespace  = kubernetes_namespace.pact_broker.metadata.0.name
+  name       = "broker"
+  namespace  = kubernetes_namespace.pact.metadata.0.name
   project_id = data.google_project.apps.project_id
 }
