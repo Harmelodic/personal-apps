@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pact-broker
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Harmelodic/personal-apps.git
+    targetRevision: HEAD
+    path: applications/pact-broker
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pact-broker
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
