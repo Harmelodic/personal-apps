@@ -19,9 +19,4 @@ resource "helm_release" "argo_cd" {
     name  = "args.appResyncPeriod" # resync all apps very X seconds
     value = "10"
   }
-
-  set {
-    name = "configs.params.\"server.insecure\""
-    value = "true"
-  }
 }
