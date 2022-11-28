@@ -22,6 +22,6 @@ resource "helm_release" "argo_cd" {
 
   set {
     name = "configs.params.\"server.insecure\""
-    value = true
+    value = tobool(true)
   }
 }
