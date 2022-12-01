@@ -12,12 +12,13 @@ module "pact_broker_workload" {
 }
 
 resource "random_password" "pact_broker_password" {
-  length  = 24
+  length = 24
 }
 
 resource "kubernetes_secret" "pact_broker" {
   metadata {
-    name = "pact-broker"
+    name      = "broker"
+    namespace = kubernetes_namespace.pact.metadata.0.name
   }
 
   data = {
