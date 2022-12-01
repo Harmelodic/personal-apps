@@ -10,3 +10,17 @@ module "pact_broker_workload" {
   namespace  = kubernetes_namespace.pact.metadata.0.name
   project_id = data.google_project.apps.project_id
 }
+
+resource "random_password" "pact_broker_password" {
+  length  = 24
+}
+
+resource "kubernetes_secret" "pact_broker" {
+  metadata {
+    name = "pact-broker"
+  }
+
+  data = {
+    password = random_password.pact_broker_password.result
+  }
+}
