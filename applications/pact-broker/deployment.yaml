@@ -57,10 +57,10 @@ spec:
               value: "true"
             - name: PACT_BROKER_LOG_LEVEL
               value: INFO
-#          resources:
-#            requests:
-#              cpu: 100m
-#              memory: 100Mi
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
           startupProbe:
             initialDelaySeconds: 60
             periodSeconds: 10
