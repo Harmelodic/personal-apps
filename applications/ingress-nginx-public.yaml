@@ -13,9 +13,9 @@ spec:
       releaseName: public
       parameters:
         - name: controller.ingressClassResource.name
-          value: "public"
+          value: public
         - name: controller.electionID
-          value: "public-ingress-controller-leader" # Needed for when installing multiple ingress-nginx in the same namespace
+          value: public-ingress-controller-leader # Needed for when installing multiple ingress-nginx in the same namespace
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx

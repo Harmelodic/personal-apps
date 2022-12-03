@@ -11,7 +11,7 @@ spec:
     solvers:
       - selector:
           dnsZones:
-            - "pact.harmelodic.com"
+            - pact.harmelodic.com
         dns01:
           cloudDNS:
             project: personal-prod-host-698399

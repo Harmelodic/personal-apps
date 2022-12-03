@@ -4,4 +4,4 @@ metadata:
   name: apps-config-map
   namespace: default
 data:
-  exists: "yes"
+  exists: yes

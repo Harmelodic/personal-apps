@@ -11,7 +11,7 @@ spec:
     solvers:
       - selector:
           dnsZones:
-            - "argo-cd.harmelodic.com"
+            - argo-cd.harmelodic.com
         dns01:
           cloudDNS:
             project: personal-prod-host-698399
