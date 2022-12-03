@@ -24,7 +24,7 @@ Kubernetes resources and begin deploying them automatically.
 
 Right now, I use Argo CD as the GitOps deployment tool, and I use the "App of Apps" pattern - therefore bootstrap simply
 contains an Argo CD `Application` resource, pointing to the `applications` directory of this repo.  
-This needs to be separate from `base` because Terraform does not now how to deploy an Argo CD `Application` without Argo
+This needs to be separate from `base` because Terraform does not know how to deploy an Argo CD `Application` without Argo
 CD and its CRDs already being installed, which occurs as part of the `base`.
 
 ## `applications`
