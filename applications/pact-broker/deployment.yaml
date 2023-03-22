@@ -81,7 +81,7 @@ spec:
               path: /diagnostic/status/heartbeat
               port: http
         - name: cloud-sql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.33.4-alpine
+          image: gcr.io/cloudsql-docker/gce-proxy:1.33.5-alpine
           command:
             - /cloud_sql_proxy
             - -ip_address_types=PRIVATE
