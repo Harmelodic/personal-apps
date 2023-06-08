@@ -8,12 +8,24 @@ spec:
   selector:
     matchLabels:
       app: broker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
         app: broker
     spec:
       serviceAccountName: broker
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       containers:
         - name: broker
           image: pactfoundation/pact-broker:2.107.0.1
@@ -80,6 +92,13 @@ spec:
             httpGet:
               path: /diagnostic/status/heartbeat
               port: http
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
         - name: cloud-sql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.33.7-alpine
           command:
@@ -95,13 +114,13 @@ spec:
                   key: instance-connection-name
                   name: broker-database-connection # Created by Database IaC
           securityContext:
-            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
