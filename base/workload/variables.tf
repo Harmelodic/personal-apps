@@ -5,12 +5,12 @@ variable "name" {
 
 variable "namespace" {
   description = "Kubernetes namespace for the workload's Kubernetes Service Account"
-  type = string
+  type        = string
 }
 
 variable "project_id" {
   description = "Project ID of the Project the Workload will be deployed to"
-  type = string
+  type        = string
 }
 
 output "name" {

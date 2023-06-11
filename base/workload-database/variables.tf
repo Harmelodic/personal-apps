@@ -4,17 +4,17 @@ variable "database_instance_connection_name" {
 }
 
 variable "database_instance_name" {
-  type = string
+  type        = string
   description = "Name of the Database Instance"
 }
 
 variable "namespace" {
-  type = string
+  type        = string
   description = "Namespace for where to create Config Map (should be same as where Service is deployed)"
 }
 
 variable "project_id" {
-  type = string
+  type        = string
   description = "Project ID for where the SQL Database Instance is stored"
 }
 
