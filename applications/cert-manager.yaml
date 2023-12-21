@@ -12,12 +12,12 @@ spec:
     helm:
       releaseName: cert-manager
       valuesObject:
+        extraArgs:
+          - "--issuer-ambient-credentials=true" # Needed for Workload Identity for Cloud DNS solving
         installCRDs: true
         serviceAccount: # Service Account is created elsewhere for Workload Identity
           create: false
           name: cert-manager
-        extraArgs:
-          - "--issuer-ambient-credentials=true" # Needed for Workload Identity for Cloud DNS solving
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
