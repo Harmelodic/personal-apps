@@ -11,13 +11,12 @@ spec:
     targetRevision: 4.9.0
     helm:
       releaseName: public
-      parameters:
-        - name: controller.ingressClassResource.name
-          value: public
-        - name: controller.electionID
-          value: public-ingress-controller-leader # Needed for when installing multiple ingress-nginx in the same namespace
-        - name: revisionHistoryLimit
-          value: 0
+      valuesObject:
+        controller:
+          electionID: public-ingress-controller-leader # Needed for when installing multiple ingress-nginx in the same namespace
+          ingressClassResource:
+            name: public
+        revisionHistoryLimit: 0
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
