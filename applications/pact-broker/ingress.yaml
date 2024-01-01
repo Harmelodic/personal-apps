@@ -4,6 +4,7 @@ metadata:
   name: broker
   annotations:
     cert-manager.io/issuer: broker # Will generate Certificate
+    cert-manager.io/revision-history-limit: "1"
 spec:
   ingressClassName: public
   rules:
