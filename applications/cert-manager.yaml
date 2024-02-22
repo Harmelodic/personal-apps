@@ -14,10 +14,33 @@ spec:
       valuesObject:
         extraArgs:
           - "--issuer-ambient-credentials=true" # Needed for Workload Identity for Cloud DNS solving
+        global:
+          revisionHistoryLimit: 0
         installCRDs: true
+        resources:
+          requests:
+            cpu: 2m
+            memory: 50Mi
+          limits:
+            memory: 50Mi
         serviceAccount: # Service Account is created elsewhere for Workload Identity
           create: false
           name: cert-manager
+        webhook:
+          resources:
+            requests:
+              cpu: 2m
+              memory: 20Mi
+            limits:
+              memory: 20Mi
+        cainjector:
+          resources:
+            requests:
+              cpu: 3m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
+            
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
