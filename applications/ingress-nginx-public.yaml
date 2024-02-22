@@ -16,6 +16,7 @@ spec:
           electionID: public-ingress-controller-leader # Needed for when installing multiple ingress-nginx in the same namespace
           ingressClassResource:
             name: public
+          replicaCount: 2
         revisionHistoryLimit: 0
   destination:
     server: https://kubernetes.default.svc
