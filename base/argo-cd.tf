@@ -11,7 +11,7 @@ resource "helm_release" "argo_cd" {
   }
 
   set {
-    name  = "configs.params.server\\.insecure"
+    name  = "configs.params.server\\.insecure" # Run Argo CD without TLS, since the Ingress will handle and terminate TLS
     value = "true"
   }
 }
