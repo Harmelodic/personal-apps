@@ -6,6 +6,4 @@ commonLabels:
   app.kubernetes.io/name: argo-cd-ingress
   app.kubernetes.io/part-of: argo-cd-ingress
   app.kubernetes.io/version: latest
-resources:
-  - ingress.yaml
-  - issuer.yaml
+resources: [] # All resources in this repo are unique to the environment
