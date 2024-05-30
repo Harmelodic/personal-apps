@@ -9,3 +9,5 @@ commonLabels:
   app.kubernetes.io/version: latest
 resources:
   - ../bases
+  - ingress.yaml
+  - issuer.yaml

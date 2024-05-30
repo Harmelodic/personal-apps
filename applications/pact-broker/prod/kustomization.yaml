@@ -8,7 +8,6 @@ commonLabels:
   app.kubernetes.io/part-of: pact
   app.kubernetes.io/version: latest
 resources:
-  - deployment.yaml
+  - ../bases
   - ingress.yaml
   - issuer.yaml
-  - service.yaml

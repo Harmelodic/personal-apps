@@ -10,5 +10,4 @@ commonLabels:
 resources:
   - config-map-contentful.yaml
   - deployment.yaml
-  - ingress.yaml
   - service.yaml

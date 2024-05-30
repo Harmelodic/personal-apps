@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
-    path: applications/pact-broker
+    path: applications/pact-broker/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: pact
