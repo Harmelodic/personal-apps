@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Harmelodic/blog.git
+    repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
-    path: kustomize/prod
+    path: applications/harmelodic-blog/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: harmelodic

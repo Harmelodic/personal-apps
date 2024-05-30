@@ -29,8 +29,7 @@ CD and its CRDs already being installed, which occurs as part of the `base`.
 
 ## `applications`
 
-`applications` contains the base Application resources needed by the GitOps deployment tool to know where to look for
-and how to deploy actual applications.
+`applications` contains the manifests needed by the GitOps deployment tool to deploy the actual applications.
 
-Right now, I use Argo CD as the GitOps deployment tool - therefore each Application is an Argo CD `Application` resource
-which points to the Application repository, where deployment configuration is kept.
+Right now, I use Argo CD as the GitOps deployment tool - therefore each application is an Argo CD `Application` resource
+which points to a Kustomization or a Helm Chart.
