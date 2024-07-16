@@ -102,7 +102,7 @@ spec:
               drop:
                 - ALL
         - name: cloud-sql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.35.4-alpine
+          image: gcr.io/cloudsql-docker/gce-proxy:1.36.0-alpine
           command:
             - /cloud_sql_proxy
             - -ip_address_types=PRIVATE
