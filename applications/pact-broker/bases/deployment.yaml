@@ -64,7 +64,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: broker
+                  name: broker # Created manually
             - name: PACT_BROKER_PUBLIC_HEARTBEAT
               value: "true"
             - name: PACT_BROKER_LOG_LEVEL
