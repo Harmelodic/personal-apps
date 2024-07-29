@@ -58,7 +58,7 @@ spec:
                   name: contentful # Created manually
           resources:
             requests:
-              cpu: 3m
+              cpu: 5m
               memory: 200Mi
             limits:
               memory: 200Mi
