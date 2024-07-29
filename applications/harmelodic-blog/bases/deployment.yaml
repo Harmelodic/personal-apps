@@ -58,10 +58,10 @@ spec:
                   name: contentful # Created manually
           resources:
             requests:
-              cpu: 10m
-              memory: 250Mi
+              cpu: 3m
+              memory: 200Mi
             limits:
-              memory: 250Mi
+              memory: 200Mi
           startupProbe:
             initialDelaySeconds: 60
             periodSeconds: 10
