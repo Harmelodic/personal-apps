@@ -17,6 +17,12 @@ spec:
           ingressClassResource:
             name: public
           replicaCount: 2
+          resources:
+            requests:
+              cpu: 10m
+              memory: 90Mi
+            limits:
+              memory: 90Mi
         revisionHistoryLimit: 0
   destination:
     server: https://kubernetes.default.svc
