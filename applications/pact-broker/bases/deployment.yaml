@@ -108,7 +108,7 @@ spec:
             - "--structured-logs"
             - "--auto-iam-authn"
             - "--port=5432"
-            - "$INSTANCE_CONNECTION_NAME"
+            - "$(INSTANCE_CONNECTION_NAME)"
           env:
             - name: INSTANCE_CONNECTION_NAME
               valueFrom:
