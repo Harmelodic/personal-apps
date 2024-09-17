@@ -102,13 +102,13 @@ spec:
               drop:
                 - ALL
         - name: cloud-sql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.37.0-alpine
-          command:
-            - /cloud_sql_proxy
-            - -ip_address_types=PRIVATE
-            - -log_debug_stdout
-            - -enable_iam_login
-            - -instances=$(INSTANCE_CONNECTION_NAME)=tcp:5432
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0-alpine
+          args:
+            - "--private-ip"
+            - "--structured-logs"
+            - "--auto-iam-authn"
+            - "--port=5432"
+            - "$INSTANCE_CONNECTION_NAME"
           env:
             - name: INSTANCE_CONNECTION_NAME
               valueFrom:
