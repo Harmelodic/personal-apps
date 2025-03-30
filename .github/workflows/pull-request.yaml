@@ -10,7 +10,7 @@ jobs:
   terraform-validate:
     permissions:
       contents: 'read'
-      id-token: 'write'
+      id-token: 'write' # Fetch OIDC Token for GCP Auth
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -19,9 +19,7 @@ jobs:
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
           service_account: automation-for-pull-requests@automation-220928.iam.gserviceaccount.com
-
       - run: terraform -chdir=base init -upgrade
       - run: terraform -chdir=base validate
-
       - run: terraform -chdir=bootstrap init -upgrade
       - run: terraform -chdir=bootstrap validate
