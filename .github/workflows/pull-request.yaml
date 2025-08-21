@@ -28,6 +28,15 @@ jobs:
       - run: pip install checkov
       - run: checkov --directory base
       - run: checkov --directory bootstrap
+  terraform-fmt:
+    permissions:
+      contents: 'read'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform -chdir=base fmt -recursive && git diff --exit-code
+      - run: terraform -chdir=bootstrap fmt -recursive && git diff --exit-code
   terraform-validate:
     permissions:
       contents: 'read'
