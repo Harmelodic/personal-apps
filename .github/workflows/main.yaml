@@ -17,7 +17,7 @@ jobs:
       - uses: terraform-linters/setup-tflint@ae78205cfffec9e8d93fd2b3115c7e9d3166d4b6 # v5
       - run: tflint --init
       - run: tflint --chdir=base
-      - run: tflint --chidr=bootstrap
+      - run: tflint --chdir=bootstrap
   terraform-apply:
     permissions:
       contents: 'read'
