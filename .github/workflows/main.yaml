@@ -13,7 +13,7 @@ jobs:
     uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@dd030062661cb2ee7c857959cb64a6e2807f86ce
     with:
       directory: base
-  release-terrafrom-base:
+  release-terraform-base:
     needs: verify-terraform-base
     uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@dd030062661cb2ee7c857959cb64a6e2807f86ce
     with:
@@ -24,7 +24,7 @@ jobs:
     uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@dd030062661cb2ee7c857959cb64a6e2807f86ce
     with:
       directory: bootstrap
-  release-terrafrom-bootstrap:
+  release-terraform-bootstrap:
     needs:
       - release-terraform-base
       - verify-terraform-bootstrap
