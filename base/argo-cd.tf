@@ -3,7 +3,7 @@ resource "helm_release" "argo_cd" {
   name       = "argo-cd"
   namespace  = kubernetes_namespace.argo_cd.metadata[0].name
   repository = "https://argoproj.github.io/argo-helm"
-  version    = "8.3.0"
+  version    = "8.3.1"
 
   set = [
     {
