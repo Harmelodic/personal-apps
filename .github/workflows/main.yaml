@@ -10,28 +10,28 @@ on:
 # First release `base`, then `bootstrap`
 jobs:
   verify-github-workflows:
-    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@bbc40bdd16e74d3d44ca7032d6d855d1909af9d1
+    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@726d6c3bc206f053b843036ed863408067188994
 
   verify-terraform-base:
-    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@bbc40bdd16e74d3d44ca7032d6d855d1909af9d1
+    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@726d6c3bc206f053b843036ed863408067188994
     with:
       directory: base
   release-terraform-base:
     needs: verify-terraform-base
-    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@bbc40bdd16e74d3d44ca7032d6d855d1909af9d1
+    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@726d6c3bc206f053b843036ed863408067188994
     with:
       directory: base
       workspace: prod
 
   verify-terraform-bootstrap:
-    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@bbc40bdd16e74d3d44ca7032d6d855d1909af9d1
+    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@726d6c3bc206f053b843036ed863408067188994
     with:
       directory: bootstrap
   release-terraform-bootstrap:
     needs:
       - release-terraform-base
       - verify-terraform-bootstrap
-    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@bbc40bdd16e74d3d44ca7032d6d855d1909af9d1
+    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@726d6c3bc206f053b843036ed863408067188994
     with:
       directory: bootstrap
       workspace: prod
