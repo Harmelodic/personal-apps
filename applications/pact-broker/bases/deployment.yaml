@@ -102,7 +102,7 @@ spec:
               drop:
                 - ALL
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.19.0-alpine
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.20.0-alpine
           args:
             - "--private-ip"
             - "--structured-logs"
