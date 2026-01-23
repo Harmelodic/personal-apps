@@ -1,0 +1,6 @@
+args:
+  appResyncPeriod: 10
+
+configs:
+  params:
+    server.insecure: "true"

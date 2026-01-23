@@ -1,0 +1,49 @@
+# Create a namespace for Argo CD
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: argo-cd-namespace
+manifests:
+  kustomize:
+    paths:
+      - argo/namespace
+deploy:
+  kubectl: {}
+---
+# Deploy Argo CD
+apiVersion: skaffold/v4beta13
+kind: Config
+requires:
+  - configs:
+      - argo-cd-namespace
+metadata:
+  name: argo-cd-instance
+manifests:
+  helm:
+    releases:
+      - name: argo-cd
+        repo: https://argoproj.github.io/argo-helm
+        remoteChart: argo-cd
+        upgradeOnChange: true
+        version: 9.3.5
+        valuesFiles:
+          - gitops/argo-cd/values.yaml
+        namespace: argocd
+deploy:
+  helm: {}
+---
+# Get Argo CD to pick up all personal-apps resources.
+apiVersion: skaffold/v4beta13
+kind: Config
+requires:
+  - configs:
+      - argo-cd-namespace
+      - argo-cd-instance
+metadata:
+  name: bootstrap
+manifests:
+  kustomize:
+    paths:
+      - argo/gitops
+deploy:
+  kubectl: {}
