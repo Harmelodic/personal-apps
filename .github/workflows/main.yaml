@@ -37,7 +37,7 @@ jobs:
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
           service_account: automation@automation-220928.iam.gserviceaccount.com
-      - run: gcloud components install gke-gcloud-auth-plugin
+      - run: sudo apt install google-cloud-cli-gke-gcloud-auth-plugin
       - run: gcloud container clusters get-credentials "apps" --region "europe-north1-b" --project "personal-prod-apps-72077"
       # Install skaffold, as per: https://skaffold.dev/docs/install/
       - run: |
