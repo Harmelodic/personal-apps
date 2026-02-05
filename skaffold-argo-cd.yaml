@@ -6,11 +6,11 @@ metadata:
 manifests:
   kustomize:
     paths:
-      - argo/namespace
+      - argo-cd/namespace
 deploy:
   kubectl: {}
 ---
-# Deploy Argo CD
+# Deploy an Argo CD instance
 apiVersion: skaffold/v4beta13
 kind: Config
 requires:
@@ -27,7 +27,7 @@ manifests:
         upgradeOnChange: true
         version: 9.3.5
         valuesFiles:
-          - gitops/argo-cd/values.yaml
+          - argo-cd/instance/values.yaml
         namespace: argocd
 deploy:
   helm: {}
@@ -44,6 +44,6 @@ metadata:
 manifests:
   kustomize:
     paths:
-      - argo/gitops
+      - argo-cd/bootstrap-parent-app
 deploy:
   kubectl: {}

@@ -10,4 +10,4 @@ labels:
       app.kubernetes.io/part-of: argo-cd
       app.kubernetes.io/version: latest
 resources:
-  - personal-apps-parent-application.yaml
+  - personal-apps-parent-app.yaml

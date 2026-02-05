@@ -37,7 +37,7 @@ Argo CD and its CRDs already being installed, which occurs as part of the `base`
 Right now, I use Argo CD as the GitOps deployment tool - therefore each application is an Argo CD `Application` resource
 which points to a Kustomization or a Helm Chart.
 
-## gitops
+## argo-cd
 
 TODO:
 
