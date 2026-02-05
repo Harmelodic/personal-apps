@@ -23,9 +23,8 @@ jobs:
       directory: base
       workspace: prod
 
-  # TODO: Actually run skaffold
-  # TODO: Refactor to make more generic way of Running skaffold (i.e. put in harmelodic/workflows)
-  # TODO: Validate Skaffold as well as Run
+  # TODO: Refactor to make more generic way of running skaffold (i.e. put in harmelodic/workflows)
+  # TODO: Validate skaffold as well as run
   run-skaffold-argo-cd:
     needs: release-terraform-base
     permissions:
