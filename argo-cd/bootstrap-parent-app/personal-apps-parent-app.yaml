@@ -4,15 +4,15 @@ metadata:
   name: personal-apps
   namespace: argocd
 spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
   project: default
   source:
+    path: applications
     repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
-    path: applications
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
