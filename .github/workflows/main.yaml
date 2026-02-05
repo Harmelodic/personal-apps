@@ -23,6 +23,23 @@ jobs:
       directory: base
       workspace: prod
 
+  # TODO: Actually run skaffold
+  # TODO: Refactor to make more generic way of Running skaffold (i.e. put in harmelodic/workflows)
+  # TODO: Validate Skaffold as well as Run
+  run-skaffold-argo-cd:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest # Google Cloud CLI is already installed on Ubuntu Latest image
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
+          service_account: automation@automation-220928.iam.gserviceaccount.com
+      - run: gcloud container clusters get-credentials "apps" --region "europe-north1-b" --project "personal-prod-apps-72077"
+      - run: skaffold version
+      - run: skaffold fix -f skaffold-argo-cd.yaml
+
   verify-terraform-bootstrap:
     uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@6ff29d6786e912eb3f89292d401be69e7d3b1f3b
     with:
