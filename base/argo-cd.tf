@@ -1,3 +1,4 @@
+# TODO: Remove from state and then remove
 resource "helm_release" "argo_cd" {
   chart      = "argo-cd"
   name       = "argo-cd"

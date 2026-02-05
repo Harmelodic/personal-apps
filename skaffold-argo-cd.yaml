@@ -40,7 +40,7 @@ requires:
       - argo-cd-namespace
       - argo-cd-instance
 metadata:
-  name: bootstrap
+  name: bootstrap-parent-app
 manifests:
   kustomize:
     paths:

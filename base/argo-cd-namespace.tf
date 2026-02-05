@@ -1,3 +1,4 @@
+# TODO: Remove from state and then remove
 resource "kubernetes_namespace" "argo_cd" {
   metadata {
     name = "argocd"
