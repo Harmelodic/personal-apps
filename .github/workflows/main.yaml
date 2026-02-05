@@ -29,6 +29,7 @@ jobs:
   run-skaffold-argo-cd:
     permissions:
       contents: read
+      id-token: write # Fetch OIDC Token for GCP Auth
     runs-on: ubuntu-latest # Google Cloud CLI is already installed on Ubuntu Latest image
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
