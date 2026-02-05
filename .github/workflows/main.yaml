@@ -27,6 +27,7 @@ jobs:
   # TODO: Refactor to make more generic way of Running skaffold (i.e. put in harmelodic/workflows)
   # TODO: Validate Skaffold as well as Run
   run-skaffold-argo-cd:
+    needs: release-terraform-base
     permissions:
       contents: read
       id-token: write # Fetch OIDC Token for GCP Auth
