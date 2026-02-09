@@ -22,27 +22,16 @@ jobs:
       directory: infrastructure
       workspace: prod
 
-  # TODO: Refactor to make more generic way of running skaffold (i.e. put in harmelodic/workflows)
-  # TODO: Validate skaffold as well as run
-  run-skaffold-argo-cd:
+  # TODO: Verify `gitops-argo-cd` manifests.
+  # TODO: Verify skaffold file
+  release-skaffold-argo-cd:
     needs: release-terraform-infrastructure
-    permissions:
-      contents: read
-      id-token: write # Fetch OIDC Token for GCP Auth
-    runs-on: ubuntu-latest # Google Cloud CLI is already installed on Ubuntu Latest image
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
-        with:
-          workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
-          service_account: automation@automation-220928.iam.gserviceaccount.com
-      - uses: google-github-actions/get-gke-credentials@3da1e46a907576cefaa90c484278bb5b259dd395 # v3
-        with:
-          cluster_name: apps
-          location: europe-north1-b
-          project_id: personal-prod-apps-72077
-      # Install skaffold, as per: https://skaffold.dev/docs/install/
-      - run: |
-          curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
-          sudo install skaffold /usr/local/bin/
-      - run: skaffold run -f skaffold-argo-cd.yaml
+    uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@c745fcf2958b0d5fbae77f61d9bdf7afd430ff98
+    with:
+      gcp-project-id: personal-prod-apps-72077
+      gke-cluster-location: europe-north1-b
+      gke-cluster-name: apps
+      skaffold-file: skaffold-argo-cd.yaml
+
+  # TODO: Verify `manifests` manifests - though it won't matter much, since Argo CD will deploy them anyway - more for awareness.
+  # No need to release manifests, as they are continually deployed by Argo CD.
