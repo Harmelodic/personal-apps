@@ -16,6 +16,6 @@ jobs:
     with:
       directory: infrastructure
 
-  # TODO: Verify `gitops-argo-cd` manifests.
-  # TODO: Verify skaffold file
-  # TODO: Verify `manifests` manifests.
+# TODO: Verify `gitops-argo-cd` manifests.
+# TODO: Verify skaffold file
+# TODO: Verify `manifests` manifests.
