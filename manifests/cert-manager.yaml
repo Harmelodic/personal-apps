@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.19.3
+    helm:
+      releaseName: cert-manager
+      valuesObject:
+        extraArgs:
+          - "--issuer-ambient-credentials=true" # Needed for Workload Identity for Cloud DNS solving
+        global:
+          revisionHistoryLimit: 0
+        installCRDs: true
+        resources:
+          requests:
+            cpu: 2m
+            memory: 50Mi
+          limits:
+            memory: 50Mi
+        serviceAccount: # Service Account is created elsewhere for Workload Identity
+          create: false
+          name: cert-manager
+        webhook:
+          resources:
+            requests:
+              cpu: 1m
+              memory: 20Mi
+            limits:
+              memory: 20Mi
+        cainjector:
+          resources:
+            requests:
+              cpu: 1m
+              memory: 400Mi
+            limits:
+              memory: 400Mi
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

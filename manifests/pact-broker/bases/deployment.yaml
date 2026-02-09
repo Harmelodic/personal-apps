@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broker
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: broker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: broker
+    spec:
+      serviceAccountName: broker
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+        - name: broker
+          image: pactfoundation/pact-broker:2.107.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9292
+              name: http
+          env:
+            - name: PACT_BROKER_BASE_URL
+              value: https://pact.harmelodic.com:443
+            - name: PACT_BROKER_DATABASE_ADAPTER
+              value: postgres
+            - name: PACT_BROKER_DATABASE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  name: broker-database-connection # Created by Database IaC
+            - name: PACT_BROKER_DATABASE_PASSWORD
+              value: ""
+            - name: PACT_BROKER_DATABASE_HOST
+              value: localhost
+            - name: PACT_BROKER_DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: database
+                  name: broker-database-connection # Created by Database IaC
+            - name: PACT_BROKER_DATABASE_PORT
+              value: "5432"
+            - name: PACT_BROKER_ALLOW_PUBLIC_READ
+              value: "true"
+            - name: PACT_BROKER_BASIC_AUTH_ENABLED
+              value: "true"
+            - name: PACT_BROKER_BASIC_AUTH_USERNAME
+              value: pact-broker-user
+            - name: PACT_BROKER_BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: broker # Created manually
+            - name: PACT_BROKER_PUBLIC_HEARTBEAT
+              value: "true"
+            - name: PACT_BROKER_LOG_LEVEL
+              value: INFO
+          resources:
+            requests:
+              cpu: 1m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
+          startupProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 10
+            httpGet:
+              path: /diagnostic/status/heartbeat
+              port: http
+          readinessProbe:
+            periodSeconds: 10
+            failureThreshold: 10
+            httpGet:
+              path: /diagnostic/status/heartbeat
+              port: http
+          livenessProbe:
+            periodSeconds: 10
+            failureThreshold: 10
+            httpGet:
+              path: /diagnostic/status/heartbeat
+              port: http
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.21.0-alpine
+          args:
+            - "--private-ip"
+            - "--structured-logs"
+            - "--auto-iam-authn"
+            - "--port=5432"
+            - "$(INSTANCE_CONNECTION_NAME)"
+          env:
+            - name: INSTANCE_CONNECTION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: instance-connection-name
+                  name: broker-database-connection # Created by Database IaC
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              cpu: 1m
+              memory: 20Mi
+            limits:
+              memory: 20Mi

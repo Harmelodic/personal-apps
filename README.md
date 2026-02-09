@@ -11,7 +11,7 @@ This repository contains 3 directories which need to be deployed in the followin
 
 1. `infrastructure`
 2. `gitops-argo-cd`
-3. `applications`
+3. `manifests`
 
 ### infrastructure
 
@@ -31,14 +31,14 @@ CD) to get up and running, and some kind of "bootstrap" mechanism to trigger tha
 Kubernetes.
 
 To do this bootstrapping, I use the "App of Apps" pattern. This involves setting a "parent" Argo CD `Application`
-resource, which points to the `applications` directory of this repo.
+resource, which points to the `manifests` directory of this repo.
 
 This is deployed using Skaffold, as deploying Kubernetes / Helm from Terraform is not reliable or a good developer
 experience.
 
-### applications
+### manifests
 
-`applications` contains the manifests needed by the GitOps deployment tool to deploy the actual applications.
+`manifests` contains the manifests needed by the GitOps deployment tool to deploy the actual applications.
 
 Right now, I use Argo CD as the GitOps deployment tool - therefore each application is an Argo CD `Application` resource
 which points to a Kustomization or a Helm Chart.

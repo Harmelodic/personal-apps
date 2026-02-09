@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: personal-apps
+  name: argo-cd-ingress
   namespace: argocd
 spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests
     repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
+    path: applications/argo-cd-ingress/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
   syncPolicy:
     automated:
-      prune: true
       selfHeal: true
+      prune: true
