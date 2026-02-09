@@ -1,12 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app.kubernetes.io/component: broker
-  app.kubernetes.io/created-by: harmelodic
-  app.kubernetes.io/managed-by: kustomize
-  app.kubernetes.io/name: broker
-  app.kubernetes.io/part-of: pact
-  app.kubernetes.io/version: latest
 resources:
   - deployment.yaml
   - service.yaml
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/component: broker
+      app.kubernetes.io/created-by: harmelodic
+      app.kubernetes.io/managed-by: kustomize
+      app.kubernetes.io/name: broker
+      app.kubernetes.io/part-of: pact
+      app.kubernetes.io/version: latest
