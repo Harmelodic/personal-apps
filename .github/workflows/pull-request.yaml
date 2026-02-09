@@ -18,4 +18,5 @@ jobs:
 
 # TODO: Verify `gitops-argo-cd` manifests.
 # TODO: Verify skaffold file
-# TODO: Verify `manifests` manifests.
+# TODO: Verify `manifests` kustomization files
+# TODO: Verify rendered `manifests` manifests.

@@ -33,5 +33,6 @@ jobs:
       gke-cluster-name: apps
       skaffold-file: skaffold-argo-cd.yaml
 
-# TODO: Verify `manifests` manifests - though it won't matter much, since Argo CD will deploy them anyway - more for awareness.
+# TODO: Verify `manifests` kustomization files - though it won't matter much, since Argo CD will deploy them anyway - more for awareness
+# TODO: Verify rendered `manifests` manifests - though it won't matter much, since Argo CD will deploy them anyway - more for awareness.
 # No need to release manifests, as they are continually deployed by Argo CD.
