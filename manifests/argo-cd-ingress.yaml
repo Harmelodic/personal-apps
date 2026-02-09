@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
-    path: applications/argo-cd-ingress/prod
+    path: manifests/argo-cd-ingress/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
