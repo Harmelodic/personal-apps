@@ -3,7 +3,7 @@ terraform {
 
   backend "gcs" {
     bucket = "harmelodic-tfstate"
-    prefix = "personal-apps-gitops" # TODO: Rename to `personal-apps-infrastructure`.
+    prefix = "personal-apps-infrastructure" # TODO: Rename to `personal-apps-infrastructure`.
   }
 
   required_providers {
