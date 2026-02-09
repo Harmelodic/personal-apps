@@ -1,3 +1,4 @@
+# TODO: Move into `manifests` with an environment patch for environment-specific config.
 resource "kubernetes_config_map" "connection" {
   metadata {
     name      = "${var.workload_name}-database-connection"

@@ -42,3 +42,5 @@ experience.
 
 Right now, I use Argo CD as the GitOps deployment tool - therefore each application is an Argo CD `Application` resource
 which points to a Kustomization or a Helm Chart.
+
+- TODO: Refactor manifests to have environments, rather than the entire directory be "prod".

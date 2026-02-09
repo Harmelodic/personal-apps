@@ -3,7 +3,7 @@ terraform {
 
   backend "gcs" {
     bucket = "harmelodic-tfstate"
-    prefix = "personal-apps-gitops"
+    prefix = "personal-apps-gitops" # TODO: Rename to `personal-apps-infrastructure`.
   }
 
   required_providers {
@@ -39,6 +39,7 @@ provider "google" {
 
 data "google_client_config" "current" {}
 
+# TODO: Remove when all Kubernetes manifests have been moved to `manifests`.
 provider "kubernetes" {
   host                   = "https://${data.google_container_cluster.apps.endpoint}"
   cluster_ca_certificate = base64decode(data.google_container_cluster.apps.master_auth[0].cluster_ca_certificate)

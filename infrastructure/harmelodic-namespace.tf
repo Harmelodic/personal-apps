@@ -1,3 +1,4 @@
+# TODO: Move into `manifests`.
 resource "kubernetes_namespace" "harmelodic" {
   metadata {
     name = "harmelodic"

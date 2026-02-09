@@ -1,3 +1,4 @@
+# TODO: Move into `manifests`.
 resource "kubernetes_namespace" "pact" {
   metadata {
     name = "pact"

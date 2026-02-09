@@ -7,6 +7,7 @@ output "google_service_account" {
   value = google_service_account.workload
 }
 
+# TODO: Move into `manifests` with an environment patch for environment-specific config.
 resource "kubernetes_service_account" "workload" {
   metadata {
     name      = var.name
