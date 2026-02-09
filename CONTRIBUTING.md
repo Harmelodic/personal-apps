@@ -2,15 +2,13 @@
 
 This repository contains 3 directories which need to be deployed in the following sequence:
 
-1. `base`
+1. `infrastructure`
 2. `gitops-argo-cd`
 3. `applications`
 
-TODO: Rename `base` as `infrastructure`.
+## infrastructure
 
-## base
-
-`base` contains initial infrastructure and Kubernetes resources for applications to work.
+`infrastructure` contains initial infrastructure for applications to work.
 
 This covers things like:
 
@@ -21,13 +19,15 @@ This covers things like:
 
 ## gitops-argo-cd
 
-`gitops-argo-cd` contains the initial Kubernetes manifest needed by the GitOps deployment tool to know where to look for
-Kubernetes resources and begin deploying them automatically.
+`gitops-argo-cd` contains the initial Kubernetes manifests needed to run a Kubernetes-GitOps tool (in this case: Argo
+CD) to get up and running, and some kind of "bootstrap" mechanism to trigger that tool to deploy all other resources to
+Kubernetes.
 
-Right now, I use Argo CD as the GitOps deployment tool, and I use the "App of Apps" pattern - therefore bootstrapping is
-simply an Argo CD `Application` resource, pointing to the `applications` directory of this repo.  
-This needs to be separate from `base` because Terraform does not know how to deploy an Argo CD `Application` without
-Argo CD and its CRDs already being installed, which occurs as part of the `base`.
+To do this bootstrapping, I use the "App of Apps" pattern. This involves setting a "parent" Argo CD `Application`
+resource, which points to the `applications` directory of this repo.
+
+This is deployed using Skaffold, as deploying Kubernetes / Helm from Terraform is not reliable or a good developer
+experience.
 
 ## applications
 
