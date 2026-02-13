@@ -11,3 +11,4 @@ labels:
       app.kubernetes.io/version: latest
 resources:
   - cert-manager.yaml
+  - namespace.yaml
