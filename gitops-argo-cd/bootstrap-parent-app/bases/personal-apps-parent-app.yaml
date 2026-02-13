@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests
+    # path: <must be patched>
     repoURL: https://github.com/Harmelodic/personal-apps.git
     targetRevision: HEAD
   syncPolicy:
