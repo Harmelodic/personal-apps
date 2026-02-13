@@ -12,8 +12,7 @@ spec:
         revision: HEAD
   template:
     metadata:
-      name: "{{path.basename}}"
-      namespace: argocd
+      name: "{{path.basename}}-app"
     spec:
       destination:
         namespace: argocd
