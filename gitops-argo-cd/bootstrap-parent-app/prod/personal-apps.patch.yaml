@@ -1,8 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: personal-apps
   namespace: argocd
 spec:
-  source:
-    path: manifests
+  template:
+    spec:
+      source:
+        path: "{{path}}/prod"

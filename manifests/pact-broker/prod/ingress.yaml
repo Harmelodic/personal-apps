@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: broker
+  namespace: pact
   annotations:
     cert-manager.io/issuer: broker # Will generate Certificate
     cert-manager.io/revision-history-limit: "1"

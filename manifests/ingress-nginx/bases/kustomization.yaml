@@ -3,11 +3,12 @@ kind: Kustomization
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/component: argo-cd
+      app.kubernetes.io/component: ingress-nginx
       app.kubernetes.io/created-by: harmelodic
       app.kubernetes.io/managed-by: kustomize
-      app.kubernetes.io/name: argo-cd
-      app.kubernetes.io/part-of: argo-cd
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
       app.kubernetes.io/version: latest
 resources:
-  - personal-apps.yaml
+  - namespace.yaml
+  - ingress-nginx-public.yaml

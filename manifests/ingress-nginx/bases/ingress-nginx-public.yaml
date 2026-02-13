@@ -2,8 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ingress-nginx-public
-  namespace: argocd
+  namespace: ingress-nginx
 spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
   project: default
   source:
     chart: ingress-nginx
@@ -24,9 +27,6 @@ spec:
             limits:
               memory: 90Mi
         revisionHistoryLimit: 0
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: ingress-nginx
   syncPolicy:
     automated:
       selfHeal: true

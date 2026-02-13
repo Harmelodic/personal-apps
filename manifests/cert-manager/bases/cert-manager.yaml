@@ -2,8 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cert-manager
-  namespace: argocd
+  namespace: cert-manager
 spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
   project: default
   source:
     chart: cert-manager
@@ -40,10 +43,6 @@ spec:
               memory: 400Mi
             limits:
               memory: 400Mi
-
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: cert-manager
   syncPolicy:
     automated:
       selfHeal: true

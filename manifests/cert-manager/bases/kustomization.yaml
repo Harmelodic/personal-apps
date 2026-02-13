@@ -3,11 +3,11 @@ kind: Kustomization
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/component: argo-cd
+      app.kubernetes.io/component: cert-manager
       app.kubernetes.io/created-by: harmelodic
       app.kubernetes.io/managed-by: kustomize
-      app.kubernetes.io/name: argo-cd
-      app.kubernetes.io/part-of: argo-cd
+      app.kubernetes.io/name: cert-manager
+      app.kubernetes.io/part-of: cert-manager
       app.kubernetes.io/version: latest
 resources:
-  - personal-apps.yaml
+  - cert-manager.yaml

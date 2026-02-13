@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: personal-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/Harmelodic/personal-apps.git
+        directories:
+          - path: manifests/* # Each directory inside `manifests`.
+        revision: HEAD
+  template:
+    metadata:
+      name: "{{path.basename}}"
+      namespace: argocd
+    spec:
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
+      project: default
+      source:
+        # path: {{path}}/env <= Patch this for the environment!
+        repoURL: https://github.com/Harmelodic/personal-apps.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
