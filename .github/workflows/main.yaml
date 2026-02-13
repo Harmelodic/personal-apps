@@ -25,7 +25,7 @@ jobs:
   # TODO: Verify `gitops-argo-cd` manifests.
   # TODO: Verify skaffold file
   release-skaffold-argo-cd-prod:
-    needs: release-terraform-infrastructure
+    needs: release-terraform-infrastructure-prod
     uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@c44182353bc2aeb71553d51fd348063ac314d576
     with:
       gcp-project-id: personal-prod-apps-72077
