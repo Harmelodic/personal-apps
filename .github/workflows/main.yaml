@@ -15,7 +15,7 @@ jobs:
     uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@3e87e7e7de1ff4d92b99d775909982d9b9a5da99
     with:
       directory: infrastructure
-  release-terraform-infrastructure:
+  release-terraform-infrastructure-prod:
     needs: verify-terraform-infrastructure
     uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@3e87e7e7de1ff4d92b99d775909982d9b9a5da99
     with:
@@ -24,13 +24,14 @@ jobs:
 
   # TODO: Verify `gitops-argo-cd` manifests.
   # TODO: Verify skaffold file
-  release-skaffold-argo-cd:
+  release-skaffold-argo-cd-prod:
     needs: release-terraform-infrastructure
-    uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@3e87e7e7de1ff4d92b99d775909982d9b9a5da99
+    uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@c44182353bc2aeb71553d51fd348063ac314d576
     with:
       gcp-project-id: personal-prod-apps-72077
       gke-cluster-location: europe-north1-b
       gke-cluster-name: apps
+      runtime-environment: prod
       skaffold-file: skaffold-argo-cd.yaml
 
 # TODO: Verify `manifests` kustomization files - though it won't matter much, since Argo CD will deploy them anyway - more for awareness

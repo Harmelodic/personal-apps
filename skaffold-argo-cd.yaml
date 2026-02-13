@@ -44,6 +44,6 @@ metadata:
 manifests:
   kustomize:
     paths:
-      - gitops-argo-cd/bootstrap-parent-app
+      - gitops-argo-cd/bootstrap-parent-app/{{.runtime_environment}}
 deploy:
   kubectl: {}
