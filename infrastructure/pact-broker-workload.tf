@@ -1,7 +1,7 @@
 module "pact_broker_workload" {
   source     = "./workload"
   name       = "broker"
-  namespace  = kubernetes_namespace.pact.metadata[0].name
+  namespace  = "pact" # TODO: Remove the need for this
   project_id = data.google_project.apps.project_id
 }
 
@@ -13,7 +13,7 @@ resource "random_password" "pact_broker_password" {
 resource "kubernetes_secret" "pact_broker" {
   metadata {
     name      = "broker"
-    namespace = kubernetes_namespace.pact.metadata[0].name
+    namespace = "pact" # TODO: Remove the need for this
   }
 
   data = {
