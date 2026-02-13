@@ -11,4 +11,5 @@ labels:
       app.kubernetes.io/version: latest
 resources:
   - deployment.yaml
+  - namespace.yaml
   - service.yaml
