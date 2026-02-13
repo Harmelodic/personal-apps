@@ -1,7 +1,7 @@
 module "cert_manager_workload" {
   source     = "./workload"
   name       = "cert-manager"
-  namespace  = kubernetes_namespace.cert_manager.metadata[0].name
+  namespace  = "cert-manager" # TODO: Remove the need for this
   project_id = data.google_project.apps.project_id
 }
 
