@@ -9,15 +9,15 @@ on:
 
 jobs:
   verify-github-workflows:
-    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@131488b43dd9c37f98926fdfe0db7b3cc56f0dc9
+    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@dbcc95e2528f57c41e350714a1a9e736273f498c
 
   verify-terraform-infrastructure:
-    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@131488b43dd9c37f98926fdfe0db7b3cc56f0dc9
+    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@dbcc95e2528f57c41e350714a1a9e736273f498c
     with:
       directory: infrastructure
   release-terraform-infrastructure-prod:
     needs: verify-terraform-infrastructure
-    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@131488b43dd9c37f98926fdfe0db7b3cc56f0dc9
+    uses: harmelodic/workflows/.github/workflows/release-terraform.yaml@dbcc95e2528f57c41e350714a1a9e736273f498c
     with:
       directory: infrastructure
       workspace: prod
@@ -26,7 +26,7 @@ jobs:
   # TODO: Verify skaffold file
   release-skaffold-argo-cd-prod:
     needs: release-terraform-infrastructure-prod
-    uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@131488b43dd9c37f98926fdfe0db7b3cc56f0dc9
+    uses: harmelodic/workflows/.github/workflows/release-skaffold.yaml@dbcc95e2528f57c41e350714a1a9e736273f498c
     with:
       gcp-project-id: personal-prod-apps-72077
       gke-cluster-location: europe-north1-b
