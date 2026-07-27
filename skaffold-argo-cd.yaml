@@ -27,7 +27,7 @@ manifests:
         repo: https://argoproj.github.io/argo-helm
         upgradeOnChange: true
         valuesFiles:
-          - gitops-argo-cd/instance/values.yaml
+          - gitops-argo-cd/argo-cd-instance/values.yaml
         version: 9.4.0
 deploy:
   helm: {}
