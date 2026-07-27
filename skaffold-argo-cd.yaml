@@ -28,7 +28,7 @@ manifests:
         upgradeOnChange: true
         valuesFiles:
           - argo-cd/instance/values.yaml
-        version: 9.4.0
+        version: 10.2.1
 deploy:
   helm: {}
 ---

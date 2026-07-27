@@ -4,3 +4,9 @@ args:
 configs:
   params:
     server.insecure: "true"
+
+global:
+  networkPolicy:
+    # Undo change from Argo CD Helm Chart `10.0.0`.
+    # Also, if a Service Mesh is used, no NetworkPolicy needed.
+    create: false
