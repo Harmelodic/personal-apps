@@ -6,7 +6,7 @@ metadata:
 manifests:
   kustomize:
     paths:
-      - gitops-argo-cd/namespace
+      - argo-cd/namespace
 deploy:
   kubectl: {}
 ---
@@ -27,7 +27,7 @@ manifests:
         repo: https://argoproj.github.io/argo-helm
         upgradeOnChange: true
         valuesFiles:
-          - gitops-argo-cd/argo-cd-instance/values.yaml
+          - argo-cd/instance/values.yaml
         version: 9.4.0
 deploy:
   helm: {}
@@ -44,6 +44,6 @@ metadata:
 manifests:
   kustomize:
     paths:
-      - gitops-argo-cd/bootstrap-parent-app/{{.runtime_environment}}
+      - argo-cd/bootstrap-parent-app/{{.runtime_environment}}
 deploy:
   kubectl: {}

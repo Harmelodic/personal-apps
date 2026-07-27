@@ -22,7 +22,7 @@ jobs:
       directory: infrastructure
       workspace: prod
 
-  # TODO: Verify `gitops-argo-cd` manifests.
+  # TODO: Verify `argo-cd` manifests.
   # TODO: Verify skaffold file
   release-skaffold-argo-cd-prod:
     needs: release-terraform-infrastructure-prod
